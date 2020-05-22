@@ -1,27 +1,66 @@
 import { SET_VISIBLE_FILTER, ADD_ISSUE, DELETE_ISSUE } from './actions';
 
-const issueReducer = (state = [], action) => {
+const kariData = {
+  title: 'ore',
+  detail: 'meshi kuu',
+  status: 'banana',
+  author: 'umai',
+  createdDate: 'gorira',
+  updatedDate: 'gorira',
+};
+
+const kariData2 = {
+  title: 'are',
+  detail: 'meshi kuu',
+  status: 'banana',
+  author: 'umai',
+  createdDate: 'gorira',
+  updatedDate: 'gorira',
+};
+
+const kariData3 = {
+  title: 'ure',
+  detail: 'meshi kuu',
+  status: 'banana',
+  author: 'umai',
+  createdDate: 'gorira',
+  updatedDate: 'gorira',
+};
+
+const issues = [kariData, kariData2, kariData3];
+
+const issueReducer = (state = issues, action) => {
   switch (action.type) {
     case ADD_ISSUE:
-      return {
+      return [
         ...state,
-        issues: [
-          ...state.issues,
-          // {
-          //   title: action.title,
-          //   detail: action.detail,
-          //   status: action.status,
-          //   author: action.author,
-          //   createdDate: '',
-          //   updatedDate: '',
-          // }
-          action.issue,
-        ],
-      };
+        {
+          title: 'ure',
+          detail: 'meshi kuu',
+          status: 'banana',
+          author: 'umai',
+          createdDate: 'gorira',
+          updatedDate: 'gorira',
+        },
+      ];
+    // case ADD_ISSUE:
+    //   return {
+    //     ...state,
+    //     issues: [
+    //       ...state.issues,
+    //       // {
+    //       //   title: action.title,
+    //       //   detail: action.detail,
+    //       //   status: action.status,
+    //       //   author: action.author,
+    //       //   createdDate: '',
+    //       //   updatedDate: '',
+    //       // }
+    //       action.issue,
+    //     ],
+    //   };
     case DELETE_ISSUE:
-      return {
-        issues: state.isseus.filter((issue) => issue !== action.issue),
-      };
+      return state.filter((issue) => issue !== action.issue);
     case SET_VISIBLE_FILTER:
       return {
         ...state,

@@ -25,5 +25,5 @@ module.exports = {
     "prettier/prettier": ["error", { singleQuote: true }],
     "react/prefer-stateless-function": 0,
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"]  }],
-};
+}
 }

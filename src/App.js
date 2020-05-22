@@ -2,11 +2,8 @@ import React from 'react';
 import './App.css';
 import Modal from 'react-modal';
 
-import {TabIndexSelected, TabIndexNotSelected} from './components/atoms/TabIndex'
-import {TableCell} from './components/atoms/TableCell'
-import {Table} from './components/molecules/Table'
-import {IssueHeader} from './components/molecules/IssueHeader'
-import {IndexStructure} from './components/organisms/IndexStructure'
+import { IndexStructure } from './components/organisms/IndexStructure';
+import { Header } from './components/organisms/Header';
 
 Modal.setAppElement('#root');
 
@@ -18,9 +15,10 @@ function App() {
   };
   return (
     <div className="App">
+      <Header />
       {/* <div style={style}> */}
-        {/* <Modal /> */}
-        <IndexStructure />
+      {/* <Modal /> */}
+      <IndexStructure />
       {/* </div> */}
     </div>
   );
