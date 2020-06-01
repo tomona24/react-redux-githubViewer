@@ -15,7 +15,7 @@ const IssueHeader = (props) => {
   return (
     <Div>
       <Label text="Issue" />
-      <TextBar setNewResearchWord={setNewResearchWord} />
+      <TextBar getTheValue={setNewResearchWord} />
       <ModalDiv submitAddNewIssue={submitAddNewIssue} />
       <SecondaryButton onClick={submitDeleteIssue} text="Delete" />
     </Div>
@@ -46,7 +46,7 @@ const initialNewIssueState = {
 const ModalDiv = (props) => {
   const { submitAddNewIssue } = props;
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [newIssue, setNewIssue] = useState({});
+  const [newIssue, setNewIssue] = useState(initialNewIssueState);
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -54,6 +54,11 @@ const ModalDiv = (props) => {
 
   const closeModal = () => {
     setIsModalOpen(false);
+  };
+
+  const createdIssue = () => {
+    submitAddNewIssue();
+    closeModal();
   };
 
   const handleChange = (event) => {
@@ -68,6 +73,7 @@ const ModalDiv = (props) => {
         break;
       default:
     }
+    console.log(userInput);
     setNewIssue(updateIssue);
   };
 
@@ -81,11 +87,11 @@ const ModalDiv = (props) => {
         style={customStyles}
       >
         <Label text="タイトル" />
-        <TextBar />
+        <TextBar id={TITLE} getTheValue={handleChange} />
         <Label text="説明" />
-        <TextArea />
+        <TextArea id={DETAIL} />
         <Div>
-          <PrimaryButton onClick={submitAddNewIssue} text="New" />
+          <PrimaryButton onClick={createdIssue} text="New" />
           <DefaultButton onClick={closeModal} text="閉じる" />
         </Div>
       </Modal>
