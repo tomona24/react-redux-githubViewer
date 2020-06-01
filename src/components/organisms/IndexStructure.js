@@ -6,31 +6,36 @@ import Table from '../molecules/Table';
 import IssueHeader from '../molecules/IssueHeader';
 
 const IndexStructure = (props) => {
+  const { issues, addNewIssue, deleteChosenIssue } = props;
   const [researchWord, setResearchWord] = useState('');
   const [deleteList, setDeleteList] = useState([]);
-  const { issues, addNewIssue, deleteChosenIssue } = props;
 
   const setNewResearchWord = (word) => {
     const filterWord = word.toLowerCase();
     setResearchWord(filterWord);
   };
 
-  const deleteIssue = () => {
-    for (deleteIssue in deleteList) {
-      deleteChosenIssue(deleteIssue);
+  const submitDeleteIssue = () => {
+    // eslint-disable-next-line no-plusplus
+    for (let i = 0; i < deleteList.length; i++) {
+      deleteChosenIssue(deleteList[i]);
     }
   };
 
   const changeDeleteList = (newIssue, isClicked) => {
+    let newDeleteIssues = [];
     if (isClicked) {
-      const newDeleteIssues = [...deleteList, newIssue];
-      setDeleteList(newDeleteIssues);
+      newDeleteIssues = [...deleteList, newIssue];
     } else {
-      const filteredDeleteIssues = deleteList.filter((issue) => {
+      newDeleteIssues = deleteList.filter((issue) => {
         return newIssue !== issue;
       });
-      setDeleteList(filteredDeleteIssues);
     }
+    setDeleteList(newDeleteIssues);
+  };
+
+  const submitAddNewIssue = () => {
+    addNewIssue();
   };
 
   return (
@@ -38,7 +43,8 @@ const IndexStructure = (props) => {
       <TabIndices />
       <IssueHeader
         setNewResearchWord={setNewResearchWord}
-        deleteIssue={deleteIssue}
+        submitDeleteIssue={submitDeleteIssue}
+        submitAddNewIssue={submitAddNewIssue} // あとで消す
       />
       <Table
         issues={issues}
@@ -56,6 +62,8 @@ const Container = styled.div`
 
 IndexStructure.propTypes = {
   issues: PropTypes.arrayOf().isRequired,
+  addNewIssue: PropTypes.func.isRequired,
+  deleteChosenIssue: PropTypes.func.isRequired,
 };
 
 export default IndexStructure;

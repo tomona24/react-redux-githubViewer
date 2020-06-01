@@ -9,11 +9,11 @@ export const TableCell = (props) => {
 };
 
 export const TableCheckBoxCell = (props) => {
-  const { index, checkedIssue } = props;
-  const [isClicked, setIsClicked] = useState(false);
+  const { index, onClick, wholeChecked } = props;
+  const [isClicked, setIsClicked] = useState(true);
   const isChecked = () => {
     setIsClicked(!isClicked);
-    checkedIssue(index, isClicked);
+    onClick(index, isClicked);
   };
   return (
     <Div>
@@ -38,5 +38,5 @@ TableCell.propTypes = {
 
 TableCheckBoxCell.propTypes = {
   index: PropTypes.number.isRequired,
-  checkedIssue: PropTypes.func.isRequired,
+  onClick: PropTypes.func.isRequired,
 };

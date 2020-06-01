@@ -5,7 +5,7 @@ import { TabIndexSelected, TabIndexNotSelected } from '../atoms/TabIndex';
 const TabIndices = () => {
   return (
     <Div>
-      <TabIndexSelected text="Issue" />
+      <TabIndexSelected text="Issue" inText="issue名で検索" />
       <TabIndexNotSelected text="Pull Request" />
     </Div>
   );

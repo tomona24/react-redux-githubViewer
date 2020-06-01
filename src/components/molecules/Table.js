@@ -1,11 +1,11 @@
 import styled from 'styled-components';
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Styles from '../Styles';
 import { TableCell, TableCheckBoxCell } from '../atoms/TableCell';
 
 export const IssueList = (props) => {
-  const { issues, researchWord, changeDeleteList } = props;
+  const { issues, researchWord, changeDeleteList, wholeChecked } = props;
   const filteredIssues = issues.filter((issue) => {
     if (issue.title.toLowerCase().indexOf(researchWord) === -1) {
       return false;
@@ -17,11 +17,21 @@ export const IssueList = (props) => {
     changeDeleteList(issues[index], isClicked);
   };
 
+  const checkAll = () => {
+    for (let i = 0; i < issues.length; i++) {
+      changeDeleteList(issues[i], wholeChecked);
+    }
+  };
+
   const issueRows = filteredIssues.map((issue, index) => {
     const { title, status, author, createdDate, updatedDate } = issue;
     return (
       <Div key={title}>
-        <TableCheckBoxCell index={index} checkedIssue={checkedIssue} />
+        <TableCheckBoxCell
+          index={index}
+          onClick={checkedIssue}
+          wholeChecked={wholeChecked}
+        />
         <TableCell text={title} />
         <TableCell text={status} />
         <TableCell text={author} />
@@ -41,10 +51,11 @@ export const IssueList = (props) => {
   return issueRows;
 };
 
-const TableHeader = () => {
+const TableHeader = (props) => {
+  const { onWholeCheck } = props;
   return (
     <Div header>
-      <TableCheckBoxCell />
+      <TableCheckBoxCell index={0} onClick={onWholeCheck} />
       <TableCell text="" />
       <TableCell text="ステータス" />
       <TableCell text="作成者" />
@@ -55,14 +66,20 @@ const TableHeader = () => {
 };
 
 const Table = (props) => {
-  const { issues, researchWord, addDeleteIssue } = props;
+  const { issues, researchWord, changeDeleteList } = props;
+  const [wholeChecked, changeWholeChecked] = useState(true);
+  const onWholeCheck = (index, isChecked) => {
+    changeWholeChecked(isChecked);
+    console.log(wholeChecked);
+  };
   return (
     <TableContainer>
-      <TableHeader />
+      <TableHeader onWholeCheck={onWholeCheck} />
       <IssueList
         issues={issues}
         researchWord={researchWord}
-        addDeleteIssue={addDeleteIssue}
+        changeDeleteList={changeDeleteList}
+        wholeChecked={wholeChecked}
       />
     </TableContainer>
   );
@@ -81,7 +98,7 @@ Table.propTypes = {
     }).isRequired
   ).isRequired,
   researchWord: PropTypes.string.isRequired,
-  addDeleteIssue: PropTypes.func.isRequired,
+  changeDeleteList: PropTypes.func.isRequired,
 };
 
 IssueList.propTypes = {

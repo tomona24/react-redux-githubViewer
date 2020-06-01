@@ -4,20 +4,28 @@ import PropTypes from 'prop-types';
 import Styles from '../Styles';
 
 export const DefaultButton = (props) => {
-  const { text } = props;
-  return <ButtonDiv>{text}</ButtonDiv>;
+  const { text, onClick } = props;
+  return <ButtonDiv onClick={onClick}>{text}</ButtonDiv>;
 };
 
 export const PrimaryButton = (props) => {
-  const { text } = props;
-  return <ButtonDiv primary>{text}</ButtonDiv>;
+  const { text, onClick } = props;
+  return (
+    <ButtonDiv onClick={onClick} primary>
+      {text}
+    </ButtonDiv>
+  );
 };
 export const SecondaryButton = (props) => {
-  const { text } = props;
-  return <ButtonDiv secondary>{text}</ButtonDiv>;
+  const { text, onClick } = props;
+  return (
+    <ButtonDiv onClick={onClick} secondary>
+      {text}
+    </ButtonDiv>
+  );
 };
 
-const ButtonDiv = styled.a`
+const ButtonDiv = styled.div`
   display: block;
   cursor: pointer;
   min-width: 70px;
@@ -45,12 +53,15 @@ const ButtonDiv = styled.a`
 
 DefaultButton.propTypes = {
   text: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
 };
 
 PrimaryButton.propTypes = {
   text: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
 };
 
 SecondaryButton.propTypes = {
   text: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
 };

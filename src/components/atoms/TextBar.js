@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Styles from '../Styles';
 
 const TextBar = (props) => {
-  const { setNewResearchWord } = props;
+  const { setNewResearchWord, inText } = props;
 
   const handleChange = (event) => {
     const { value } = event.target;
@@ -13,7 +13,7 @@ const TextBar = (props) => {
 
   return (
     <Input
-      placeholder="issue名で検索"
+      placeholder={inText}
       type="text"
       id="userInput"
       name="userInput"
@@ -35,6 +35,7 @@ const Input = styled.input`
 
 TextBar.propTypes = {
   setNewResearchWord: PropTypes.func.isRequired,
+  inText: PropTypes.string.isRequired,
 };
 
 export default TextBar;
