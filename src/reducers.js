@@ -1,4 +1,4 @@
-import { SET_VISIBLE_FILTER, ADD_ISSUE, DELETE_ISSUE } from './actions';
+import { ADD_ISSUE, DELETE_ISSUE } from './actions';
 
 const kariData = {
   title: 'ore',
@@ -61,15 +61,6 @@ const issueReducer = (state = issues, action) => {
     //   };
     case DELETE_ISSUE:
       return state.filter((issue) => issue !== action.issue);
-    case SET_VISIBLE_FILTER:
-      return {
-        ...state,
-        visibleFilter: [
-          state.issues.filter(
-            (issue) => issue.title.indexOf(action.word) !== -1
-          ),
-        ],
-      };
     default:
       return state;
   }

@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import React from 'react';
+import PropTypes from 'prop-types';
 import Styles from '../Styles';
 
 export const DefaultButton = (props) => {
@@ -41,3 +42,15 @@ const ButtonDiv = styled.a`
       ? '2px solid rgb(175, 28, 42)'
       : null};
 `;
+
+DefaultButton.propTypes = {
+  text: PropTypes.string.isRequired,
+};
+
+PrimaryButton.propTypes = {
+  text: PropTypes.string.isRequired,
+};
+
+SecondaryButton.propTypes = {
+  text: PropTypes.string.isRequired,
+};

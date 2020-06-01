@@ -1,22 +1,29 @@
 import styled from 'styled-components';
 import React from 'react';
+import PropTypes from 'prop-types';
 import Styles from '../Styles';
-import { NavItem } from '../atoms/NavItem';
+import NavItem from '../atoms/NavItem';
 
 const items = ['Top', 'Your Profile', 'Issue', 'Pull Request'];
-const toggle = true;
 
-const NavItems = (props) => {
-  // const { navItem } = props
-  const navItem = items.map((item, index) => {
-    return <NavItem text={item} key={index} />;
+const NavItems = () => {
+  const navItem = items.map((item) => {
+    return <NavItem text={item} key={item} />;
   });
   return navItem;
 };
 
-export const NavList = (props) => {
+const NavList = (props) => {
+  const { toggle } = props;
+  if (toggle) {
+    return (
+      <Div>
+        <NavItems />
+      </Div>
+    );
+  }
   return (
-    <Div>
+    <Div hidden>
       <NavItems />
     </Div>
   );
@@ -32,3 +39,9 @@ const Div = styled.div`
   box-shadow: 3px 3px 3px #eee;
   display: ${(props) => (props.hidden ? 'none' : 'block')};
 `;
+
+NavList.propTypes = {
+  toggle: PropTypes.bool.isRequired,
+};
+
+export default NavList;

@@ -1,19 +1,23 @@
 import styled from 'styled-components';
-import React from 'react';
+import React, { useState } from 'react';
 import Styles from '../Styles';
-import { MenuList } from '../molecules/MenuList';
-import { NavList } from '../molecules/NavList';
+import MenuList from '../molecules/MenuList';
+import NavList from '../molecules/NavList';
 
-const toggle = true;
+const Header = () => {
+  const [toggle, setToggle] = useState(false);
 
-export const Header = () => {
+  const changeToggle = () => {
+    setToggle(!toggle);
+  };
+
   return (
     <Container>
       <MenuList />
-      <Awesome>
+      <Awesome onClick={changeToggle}>
         <i className="fas fa-bars" />
       </Awesome>
-      {toggle ? <NavList /> : null}
+      <NavList toggle={toggle} />
     </Container>
   );
 };
@@ -34,3 +38,5 @@ const Awesome = styled.div`
   padding: 16px;
   font-size: ${Styles.FONT_SIZE.MIDDLE};
 `;
+
+export default Header;

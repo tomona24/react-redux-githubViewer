@@ -1,9 +1,25 @@
 import styled from 'styled-components';
 import React from 'react';
+import PropTypes from 'prop-types';
 import Styles from '../Styles';
 
-export const TextBar = (props) => {
-  return <Input placeholder="issue名で検索" />;
+const TextBar = (props) => {
+  const { setNewResearchWord } = props;
+
+  const handleChange = (event) => {
+    const { value } = event.target;
+    setNewResearchWord(value);
+  };
+
+  return (
+    <Input
+      placeholder="issue名で検索"
+      type="text"
+      id="userInput"
+      name="userInput"
+      onChange={handleChange}
+    />
+  );
 };
 
 const Input = styled.input`
@@ -16,3 +32,9 @@ const Input = styled.input`
   border-radius: ${Styles.BORDER_RADIUS};
   border: 1px solid ${Styles.BORDER_COLOR};
 `;
+
+TextBar.propTypes = {
+  setNewResearchWord: PropTypes.func.isRequired,
+};
+
+export default TextBar;

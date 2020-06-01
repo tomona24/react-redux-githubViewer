@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import React from 'react';
 import { TabIndexSelected, TabIndexNotSelected } from '../atoms/TabIndex';
 
-export const TabIndices = () => {
+const TabIndices = () => {
   return (
     <Div>
       <TabIndexSelected text="Issue" />
@@ -16,3 +16,5 @@ const Div = styled.div`
   justify-content: center;
   margin: 16px auto;
 `;
+
+export default TabIndices;

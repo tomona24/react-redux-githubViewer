@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import React from 'react';
+import PropTypes from 'prop-types';
 import Styles from '../Styles';
 
 export const TabIndexSelected = (props) => {
@@ -32,3 +33,11 @@ const Div = styled.a`
   border-width: ${(props) =>
     props.selected ? '1px 1px 0 1px' : '0 0 1px 0px'};
 `;
+
+TabIndexSelected.propTypes = {
+  text: PropTypes.string.isRequired,
+};
+
+TabIndexNotSelected.propTypes = {
+  text: PropTypes.string.isRequired,
+};

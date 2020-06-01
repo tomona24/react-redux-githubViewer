@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import React from 'react';
 import Styles from '../Styles';
 
-export const NavItem = (props) => {
+const NavItem = (props) => {
   const { text } = props;
   return <Item>{text}</Item>;
 };
@@ -23,3 +23,5 @@ const Item = styled.a`
     color: ${Styles.FONT_COLOR.WHITE};
   }
 `;
+
+export default NavItem;

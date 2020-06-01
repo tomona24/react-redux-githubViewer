@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import React from 'react';
+import PropTypes from 'prop-types';
 import Styles from '../Styles';
 
 export const Label = (props) => {
@@ -44,3 +45,11 @@ const H3 = styled.a`
   font-family: ${Styles.FONT_FAMILY};
   font-weight: 600;
 `;
+
+Label.propTypes = {
+  text: PropTypes.string.isRequired,
+};
+
+MenuLabel.propTypes = {
+  text: PropTypes.string.isRequired,
+};

@@ -1,37 +1,27 @@
 import styled from 'styled-components';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Provider, connect } from 'react-redux';
 import Styles from '../Styles';
-import store from '../../store';
 import { TableCell, TableCheckBoxCell } from '../atoms/TableCell';
 
-// const TableRow = (props) => {
-//   const { title, status, author, createdDate, updatedDate } = props.issue;
+export const IssueList = (props) => {
+  const { issues, researchWord, changeDeleteList } = props;
+  const filteredIssues = issues.filter((issue) => {
+    if (issue.title.toLowerCase().indexOf(researchWord) === -1) {
+      return false;
+    }
+    return issue;
+  });
 
-//   return (
-//     <Div>
-//       <TableCheckBoxCell />
-//       <TableCell text={title} />
-//       <TableCell text={status} />
-//       <TableCell text={author} />
-//       <TableCell text={createdDate} />
-//       <TableCell text={updatedDate} />
-//     </Div>
-//   );
-// };
+  const checkedIssue = (index, isClicked) => {
+    changeDeleteList(issues[index], isClicked);
+  };
 
-export const IssueList = ({ issues }) => {
-  const issueRows = issues.map((issue) => {
+  const issueRows = filteredIssues.map((issue, index) => {
     const { title, status, author, createdDate, updatedDate } = issue;
-    // return (
-    //   <Div>
-    /* <TableRow key={index} issue={issue} /> */
-    // </Div>
-    // );
     return (
       <Div key={title}>
-        <TableCheckBoxCell />
+        <TableCheckBoxCell index={index} checkedIssue={checkedIssue} />
         <TableCell text={title} />
         <TableCell text={status} />
         <TableCell text={author} />
@@ -40,6 +30,14 @@ export const IssueList = ({ issues }) => {
       </Div>
     );
   });
+  if (filteredIssues.length === 0) {
+    const sentence = 'データがありません';
+    return (
+      <Div>
+        <TableCell text={sentence} />
+      </Div>
+    );
+  }
   return issueRows;
 };
 
@@ -56,26 +54,21 @@ const TableHeader = () => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return { issues: state };
-};
-
-const Container = connect(mapStateToProps, null)(IssueList);
-
-export const Table = () => {
-  // const { issues } = props;
+const Table = (props) => {
+  const { issues, researchWord, addDeleteIssue } = props;
   return (
     <TableContainer>
       <TableHeader />
-      {/* <IssueList issues={issues} ></IssueList> */}
-      <Provider store={store}>
-        <Container />
-      </Provider>
+      <IssueList
+        issues={issues}
+        researchWord={researchWord}
+        addDeleteIssue={addDeleteIssue}
+      />
     </TableContainer>
   );
 };
 
-IssueList.propTypes = {
+Table.propTypes = {
   issues: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
@@ -87,6 +80,14 @@ IssueList.propTypes = {
       updatedDate: PropTypes.string.isRequired,
     }).isRequired
   ).isRequired,
+  researchWord: PropTypes.string.isRequired,
+  addDeleteIssue: PropTypes.func.isRequired,
+};
+
+IssueList.propTypes = {
+  issues: PropTypes.arrayOf().isRequired,
+  researchWord: PropTypes.string.isRequired,
+  changeDeleteList: PropTypes.func.isRequired,
 };
 
 const Div = styled.div`
@@ -112,7 +113,9 @@ const TableContainer = styled.div`
     left: 0px;
     background: ${Styles.BACKGROUND_COLOR.LIGHT};
     border: 1px solid ${Styles.BORDER_COLOR};
-    content: "";
+    content: '';
     z-index: -5;
   }
 `;
+
+export default Table;
