@@ -1,6 +1,15 @@
-import { ADD_ISSUE, DELETE_ISSUE } from './actions';
+import { ADD_ISSUE, DELETE_ISSUE, EDIT_ISSUE } from './actions';
+
+// id: PropTypes.number.isRequired,
+// completed: PropTypes.bool.isRequired,
+// title: PropTypes.string.isRequired,
+// status: PropTypes.string.isRequired,
+// author: PropTypes.string.isRequired,
+// createdDate: PropTypes.string.isRequired,
+// updatedDate: PropTypes.string.isRequired,
 
 const kariData = {
+  id: 'ore-gorira',
   title: 'ore',
   detail: 'meshi kuu',
   status: 'banana',
@@ -10,6 +19,7 @@ const kariData = {
 };
 
 const kariData2 = {
+  id: 'are-gorira',
   title: 'are',
   detail: 'meshi kuu',
   status: 'banana',
@@ -19,6 +29,7 @@ const kariData2 = {
 };
 
 const kariData3 = {
+  id: 'ure-gorira',
   title: 'ure',
   detail: 'meshi kuu',
   status: 'banana',
@@ -32,36 +43,13 @@ const initialIssues = [kariData, kariData2, kariData3];
 const issueReducer = (state = initialIssues, action) => {
   switch (action.type) {
     case ADD_ISSUE:
-      return [
-        ...state,
-        {
-          title: 'ure',
-          detail: 'meshi kuu',
-          status: 'banana',
-          author: 'umai',
-          createdDate: 'gorira',
-          updatedDate: 'gorira',
-        },
-      ];
-    // case ADD_ISSUE:
-    //   return {
-    //     ...state,
-    //     issues: [
-    //       ...state.issues,
-    //       // {
-    //       //   title: action.title,
-    //       //   detail: action.detail,
-    //       //   status: action.status,
-    //       //   author: action.author,
-    //       //   createdDate: '',
-    //       //   updatedDate: '',
-    //       // }
-    //       action.issue,
-    //     ],
-    //   };
+      return [...state, action.issue];
     case DELETE_ISSUE:
       return state.filter((issue) => !Object.is(issue, action.issue));
-
+    case EDIT_ISSUE:
+      return state.map((issue) =>
+        issue.id === action.issue.id ? action.issue : issue
+      );
     default:
       return state;
   }

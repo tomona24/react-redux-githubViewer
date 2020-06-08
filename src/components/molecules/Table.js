@@ -3,9 +3,22 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Styles from '../Styles';
 import { TableCell, TableCheckBoxCell } from '../atoms/TableCell';
+import ModalDiv from './ModalDiv';
 
 export const IssueList = (props) => {
-  const { issues, researchWord, changeDeleteList, wholeChecked } = props;
+  const {
+    issues,
+    researchWord,
+    changeDeleteList,
+    wholeChecked,
+    uploadEditIssue,
+  } = props;
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
   const filteredIssues = issues.filter((issue) => {
     if (issue.title.toLowerCase().indexOf(researchWord) === -1) {
       return false;
@@ -26,22 +39,31 @@ export const IssueList = (props) => {
   const issueRows = filteredIssues.map((issue, index) => {
     const { title, status, author, createdDate, updatedDate } = issue;
     return (
-      <Div key={title}>
+      <Tr>
         <TableCheckBoxCell
           onClick={handleClick}
           index={index}
           wholeChecked={wholeChecked}
         />
-        <TableCell text={title} />
-        <TableCell text={status} />
-        <TableCell text={author} />
-        <TableCell text={createdDate} />
-        <TableCell text={updatedDate} />
-      </Div>
+        <Div key={title} onClick={openModal}>
+          <TableCell text={title} />
+          <TableCell text={status} />
+          <TableCell text={author} />
+          <TableCell text={createdDate} />
+          <TableCell text={updatedDate} />
+        </Div>
+        <ModalDiv
+          handleSubmit={uploadEditIssue}
+          isModalOpen={isModalOpen}
+          setIsModalOpen={setIsModalOpen}
+          type="edit"
+          editIssue={issue}
+        />
+      </Tr>
     );
   });
   if (filteredIssues.length === 0) {
-    const sentence = 'データがありません';
+    const sentence = "データがありません";
     return (
       <Div>
         <TableCell text={sentence} />
@@ -70,7 +92,7 @@ const TableHeader = (props) => {
 };
 
 const Table = (props) => {
-  const { issues, researchWord, changeDeleteList } = props;
+  const { issues, researchWord, changeDeleteList, uploadEditIssue } = props;
   const [wholeChecked, setWholeChecked] = useState(false);
   const onWholeCheck = (index, isChecked) => {
     setWholeChecked(isChecked);
@@ -83,6 +105,7 @@ const Table = (props) => {
         researchWord={researchWord}
         changeDeleteList={changeDeleteList}
         wholeChecked={wholeChecked}
+        uploadEditIssue={uploadEditIssue}
       />
     </TableContainer>
   );
@@ -91,8 +114,6 @@ const Table = (props) => {
 Table.propTypes = {
   issues: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      completed: PropTypes.bool.isRequired,
       title: PropTypes.string.isRequired,
       status: PropTypes.string.isRequired,
       author: PropTypes.string.isRequired,
@@ -102,6 +123,7 @@ Table.propTypes = {
   ).isRequired,
   researchWord: PropTypes.string.isRequired,
   changeDeleteList: PropTypes.func.isRequired,
+  uploadEditIssue: PropTypes.func.isRequired,
 };
 
 TableHeader.propTypes = {
@@ -113,6 +135,7 @@ IssueList.propTypes = {
   issues: PropTypes.arrayOf().isRequired,
   researchWord: PropTypes.string.isRequired,
   changeDeleteList: PropTypes.func.isRequired,
+  uploadEditIssue: PropTypes.func.isRequired,
 };
 
 const Div = styled.div`
@@ -121,6 +144,11 @@ const Div = styled.div`
   color: #000;
   font-weight: ${(props) => (props.header ? 800 : 400)};
   margin: 1px 0px;
+`;
+const Tr = styled(Div)`
+  :hover {
+    background: ${Styles.BACKGROUND_COLOR.LIGHTBLUE};
+  }
 `;
 
 const TableContainer = styled.div`
@@ -138,7 +166,7 @@ const TableContainer = styled.div`
     left: 0px;
     background: ${Styles.BACKGROUND_COLOR.LIGHT};
     border: 1px solid ${Styles.BORDER_COLOR};
-    content: '';
+    content: "";
     z-index: -5;
   }
 `;

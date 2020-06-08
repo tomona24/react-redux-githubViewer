@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { addIssue, deleteIssue } from '../actions';
+import { addIssue, deleteIssue, editIssue } from '../actions';
 import IndexStructure from '../components/organisms/IndexStructure';
 
 const mapStateToProps = (state) => {
@@ -15,6 +15,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     deleteChosenIssue: (issue) => {
       dispatch(deleteIssue(issue));
+    },
+    uploadEditIssue: (issue) => {
+      dispatch(editIssue(issue));
     },
   };
 };

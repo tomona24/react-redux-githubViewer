@@ -6,7 +6,7 @@ import Table from '../molecules/Table';
 import IssueHeader from '../molecules/IssueHeader';
 
 const IndexStructure = (props) => {
-  const { issues, addNewIssue, deleteChosenIssue } = props;
+  const { issues, addNewIssue, deleteChosenIssue, uploadEditIssue } = props;
   const [researchWord, setResearchWord] = useState('');
   const [deleteList, setDeleteList] = useState([]);
 
@@ -34,8 +34,8 @@ const IndexStructure = (props) => {
     }
   };
 
-  const submitAddNewIssue = () => {
-    addNewIssue();
+  const submitAddNewIssue = (newIssue) => {
+    addNewIssue(newIssue);
   };
 
   return (
@@ -50,6 +50,7 @@ const IndexStructure = (props) => {
         issues={issues}
         researchWord={researchWord}
         changeDeleteList={changeDeleteList}
+        uploadEditIssue={uploadEditIssue}
       />
     </Container>
   );
@@ -64,6 +65,7 @@ IndexStructure.propTypes = {
   issues: PropTypes.arrayOf().isRequired,
   addNewIssue: PropTypes.func.isRequired,
   deleteChosenIssue: PropTypes.func.isRequired,
+  uploadEditIssue: PropTypes.func.isRequired,
 };
 
 export default IndexStructure;

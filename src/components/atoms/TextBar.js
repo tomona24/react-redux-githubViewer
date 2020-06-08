@@ -1,14 +1,16 @@
 import styled from 'styled-components';
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Styles from '../Styles';
 
 const TextBar = (props) => {
-  const { getTheValue, placeholder, value } = props;
+  const { getTheValue, placeholder, text } = props;
+  const [userInput, setUserInput] = useState(text);
 
   const handleChange = (event) => {
-    const { value: userInput } = event.target;
-    getTheValue(userInput);
+    const { value } = event.target;
+    setUserInput(value);
+    getTheValue(value);
   };
 
   return (
@@ -16,7 +18,7 @@ const TextBar = (props) => {
       placeholder={placeholder}
       type="text"
       name="userInput"
-      value={value}
+      value={userInput}
       onChange={handleChange}
     />
   );
@@ -34,7 +36,7 @@ const Input = styled.input`
 `;
 
 TextBar.propTypes = {
-  value: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
   getTheValue: PropTypes.func.isRequired,
   placeholder: PropTypes.string.isRequired,
 };

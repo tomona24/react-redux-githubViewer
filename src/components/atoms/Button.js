@@ -5,7 +5,11 @@ import Styles from '../Styles';
 
 export const Button = (props) => {
   const { text, onClick, type } = props;
-  return <ButtonDiv onClick={onClick} type={type}>{text}</ButtonDiv>;
+  return (
+    <ButtonDiv onClick={onClick} type={type}>
+      {text}
+    </ButtonDiv>
+  );
 };
 
 // export const PrimaryButton = (props) => {
