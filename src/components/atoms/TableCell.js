@@ -10,14 +10,15 @@ export const TableCell = (props) => {
 
 export const TableCheckBoxCell = (props) => {
   const { index, onClick, wholeChecked } = props;
-  const [isClicked, setIsClicked] = useState(true);
-  const isChecked = () => {
-    setIsClicked(!isClicked);
-    onClick(index, isClicked);
+  const [isChecked, setIsChecked] = useState(false);
+  const handleClick = () => {
+    setIsChecked(!isChecked);
+    onClick(index, isChecked);
   };
+  const checked = wholeChecked ? true : isChecked;
   return (
     <Div>
-      <input type="checkbox" onClick={isChecked} />
+      <input type="checkbox" onClick={handleClick} checked={checked} />
     </Div>
   );
 };

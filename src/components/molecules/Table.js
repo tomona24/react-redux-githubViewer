@@ -52,10 +52,14 @@ export const IssueList = (props) => {
 };
 
 const TableHeader = (props) => {
-  const { onWholeCheck } = props;
+  const { onWholeCheck, wholeChecked } = props;
   return (
     <Div header>
-      <TableCheckBoxCell index={0} onClick={onWholeCheck} />
+      <TableCheckBoxCell
+        index={0}
+        onClick={onWholeCheck}
+        checked={wholeChecked}
+      />
       <TableCell text="" />
       <TableCell text="ステータス" />
       <TableCell text="作成者" />
@@ -67,14 +71,13 @@ const TableHeader = (props) => {
 
 const Table = (props) => {
   const { issues, researchWord, changeDeleteList } = props;
-  const [wholeChecked, changeWholeChecked] = useState(true);
+  const [wholeChecked, changeWholeChecked] = useState(false);
   const onWholeCheck = (index, isChecked) => {
-    changeWholeChecked(isChecked);
-    console.log(wholeChecked);
+    changeWholeChecked(!isChecked);
   };
   return (
     <TableContainer>
-      <TableHeader onWholeCheck={onWholeCheck} />
+      <TableHeader onWholeCheck={onWholeCheck} wholeChecked={wholeChecked} />
       <IssueList
         issues={issues}
         researchWord={researchWord}

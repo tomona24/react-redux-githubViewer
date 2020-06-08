@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Modal from 'react-modal';
-import { DefaultButton, PrimaryButton, SecondaryButton } from '../atoms/Button';
+import { Button } from '../atoms/Button';
 import { Label } from '../atoms/Label';
 import TextArea from '../atoms/TextArea';
 import TextBar from '../atoms/TextBar';
@@ -15,9 +15,9 @@ const IssueHeader = (props) => {
   return (
     <Div>
       <Label text="Issue" />
-      <TextBar getTheValue={setNewResearchWord} />
+      <TextBar getTheValue={setNewResearchWord} placeholder={"issue名で検索"} />
       <ModalDiv submitAddNewIssue={submitAddNewIssue} />
-      <SecondaryButton onClick={submitDeleteIssue} text="Delete" />
+      <Button onClick={submitDeleteIssue} text="Delete" type="secondary" />
     </Div>
   );
 };
@@ -73,13 +73,12 @@ const ModalDiv = (props) => {
         break;
       default:
     }
-    console.log(userInput);
     setNewIssue(updateIssue);
   };
 
   return (
     <div>
-      <PrimaryButton onClick={openModal} text="Open" />
+      <Button onClick={openModal} text="Open" type="primary" />
       <Modal
         isOpen={isModalOpen}
         onRequestClose={closeModal}
@@ -87,12 +86,12 @@ const ModalDiv = (props) => {
         style={customStyles}
       >
         <Label text="タイトル" />
-        <TextBar id={TITLE} getTheValue={handleChange} />
+        <TextBar id={TITLE} getTheValue={handleChange} value={"あいうえお"} />
         <Label text="説明" />
         <TextArea id={DETAIL} />
         <Div>
-          <PrimaryButton onClick={createdIssue} text="New" />
-          <DefaultButton onClick={closeModal} text="閉じる" />
+          <Button onClick={createdIssue} text="New" type="primary" />
+          <Button onClick={closeModal} text="閉じる" />
         </Div>
       </Modal>
     </div>

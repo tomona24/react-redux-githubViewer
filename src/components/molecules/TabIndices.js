@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 import React from 'react';
-import { TabIndexSelected, TabIndexNotSelected } from '../atoms/TabIndex';
+import TabIndex from '../atoms/TabIndex';
 
 const TabIndices = () => {
   return (
     <Div>
-      <TabIndexSelected text="Issue" inText="issue名で検索" />
-      <TabIndexNotSelected text="Pull Request" />
+      <TabIndex text="Issue" placeholder="issue名で検索" selected />
+      <TabIndex text="Pull Request" selected={false} />
     </Div>
   );
 };

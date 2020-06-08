@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 import Styles from '../Styles';
 
 const TextArea = (props) => {
-  const { inText } = props;
+  const { placeholder } = props;
 
   return (
-    <Input placeholder={inText} type="text" id="userInput" name="userInput" />
+    <Input placeholder={placeholder} type="text" id="userInput" name="userInput" />
   );
 };
 
@@ -23,7 +23,7 @@ const Input = styled.textarea`
 `;
 
 TextArea.propTypes = {
-  inText: PropTypes.string.isRequired,
+  placeholder: PropTypes.string.isRequired,
 };
 
 export default TextArea;

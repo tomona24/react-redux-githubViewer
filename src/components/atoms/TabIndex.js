@@ -3,18 +3,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Styles from '../Styles';
 
-export const TabIndexSelected = (props) => {
-  const { text } = props;
+const TabIndex = (props) => {
+  const { text, selected } = props;
   return (
-    <Div href="" selected>
+    <Div href="" selected={selected}>
       {text}
     </Div>
   );
-};
-
-export const TabIndexNotSelected = (props) => {
-  const { text } = props;
-  return <Div href="">{text}</Div>;
 };
 
 const Div = styled.a`
@@ -34,10 +29,9 @@ const Div = styled.a`
     props.selected ? '1px 1px 0 1px' : '0 0 1px 0px'};
 `;
 
-TabIndexSelected.propTypes = {
+TabIndex.propTypes = {
   text: PropTypes.string.isRequired,
+  selected: PropTypes.bool.isRequired,
 };
 
-TabIndexNotSelected.propTypes = {
-  text: PropTypes.string.isRequired,
-};
+export default TabIndex;

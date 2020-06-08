@@ -4,19 +4,19 @@ import PropTypes from 'prop-types';
 import Styles from '../Styles';
 
 const TextBar = (props) => {
-  const { getTheValue, inText, id } = props;
+  const { getTheValue, placeholder, value } = props;
 
   const handleChange = (event) => {
-    const { value } = event.target;
-    getTheValue(value);
+    const { value: userInput } = event.target;
+    getTheValue(userInput);
   };
 
   return (
     <Input
-      placeholder={inText}
+      placeholder={placeholder}
       type="text"
-      id={id}
       name="userInput"
+      value={value}
       onChange={handleChange}
     />
   );
@@ -36,7 +36,7 @@ const Input = styled.input`
 TextBar.propTypes = {
   id: PropTypes.string.isRequired,
   getTheValue: PropTypes.func.isRequired,
-  inText: PropTypes.string.isRequired,
+  placeholder: PropTypes.string.isRequired,
 };
 
 export default TextBar;
