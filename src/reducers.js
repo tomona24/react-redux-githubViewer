@@ -27,9 +27,9 @@ const kariData3 = {
   updatedDate: 'gorira',
 };
 
-const issues = [kariData, kariData2, kariData3];
+const initialIssues = [kariData, kariData2, kariData3];
 
-const issueReducer = (state = issues, action) => {
+const issueReducer = (state = initialIssues, action) => {
   switch (action.type) {
     case ADD_ISSUE:
       return [
@@ -60,7 +60,8 @@ const issueReducer = (state = issues, action) => {
     //     ],
     //   };
     case DELETE_ISSUE:
-      return state.filter((issue) => issue !== action.issue);
+      return state.filter((issue) => !Object.is(issue, action.issue));
+
     default:
       return state;
   }

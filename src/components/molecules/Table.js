@@ -13,23 +13,23 @@ export const IssueList = (props) => {
     return issue;
   });
 
-  const checkedIssue = (index, isClicked) => {
-    changeDeleteList(issues[index], isClicked);
+  const handleClick = (index, isChecked) => {
+    changeDeleteList(issues[index], isChecked);
   };
 
-  const checkAll = () => {
-    for (let i = 0; i < issues.length; i++) {
-      changeDeleteList(issues[i], wholeChecked);
-    }
-  };
+  // const checkAll = () => {
+  //   for (let i = 0; i < issues.length; i++) {
+  //     changeDeleteList(issues[i], wholeChecked);
+  //   }
+  // };
 
   const issueRows = filteredIssues.map((issue, index) => {
     const { title, status, author, createdDate, updatedDate } = issue;
     return (
       <Div key={title}>
         <TableCheckBoxCell
+          onClick={handleClick}
           index={index}
-          onClick={checkedIssue}
           wholeChecked={wholeChecked}
         />
         <TableCell text={title} />
@@ -71,9 +71,9 @@ const TableHeader = (props) => {
 
 const Table = (props) => {
   const { issues, researchWord, changeDeleteList } = props;
-  const [wholeChecked, changeWholeChecked] = useState(false);
+  const [wholeChecked, setWholeChecked] = useState(false);
   const onWholeCheck = (index, isChecked) => {
-    changeWholeChecked(!isChecked);
+    setWholeChecked(isChecked);
   };
   return (
     <TableContainer>
@@ -102,6 +102,11 @@ Table.propTypes = {
   ).isRequired,
   researchWord: PropTypes.string.isRequired,
   changeDeleteList: PropTypes.func.isRequired,
+};
+
+TableHeader.propTypes = {
+  onWholeCheck: PropTypes.func.isRequired,
+  wholeChecked: PropTypes.bool.isRequired,
 };
 
 IssueList.propTypes = {

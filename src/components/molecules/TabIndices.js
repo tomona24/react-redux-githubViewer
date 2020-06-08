@@ -5,7 +5,7 @@ import TabIndex from '../atoms/TabIndex';
 const TabIndices = () => {
   return (
     <Div>
-      <TabIndex text="Issue" placeholder="issue名で検索" selected />
+      <TabIndex text="Issue" selected />
       <TabIndex text="Pull Request" selected={false} />
     </Div>
   );

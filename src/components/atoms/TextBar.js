@@ -34,7 +34,7 @@ const Input = styled.input`
 `;
 
 TextBar.propTypes = {
-  id: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
   getTheValue: PropTypes.func.isRequired,
   placeholder: PropTypes.string.isRequired,
 };

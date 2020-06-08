@@ -9,16 +9,18 @@ export const TableCell = (props) => {
 };
 
 export const TableCheckBoxCell = (props) => {
-  const { index, onClick, wholeChecked } = props;
+  const { onClick, index } = props;
   const [isChecked, setIsChecked] = useState(false);
-  const handleClick = () => {
+  // const checked = wholeChecked ? true : isChecked;
+  const onChecked = () => {
+    // if(index != null) {
+    onClick(index, !isChecked);
     setIsChecked(!isChecked);
-    onClick(index, isChecked);
   };
-  const checked = wholeChecked ? true : isChecked;
+
   return (
-    <Div>
-      <input type="checkbox" onClick={handleClick} checked={checked} />
+    <Div onClick={onChecked}>
+      <input type="checkbox" checked={isChecked} />
     </Div>
   );
 };
@@ -38,6 +40,6 @@ TableCell.propTypes = {
 };
 
 TableCheckBoxCell.propTypes = {
-  index: PropTypes.number.isRequired,
   onClick: PropTypes.func.isRequired,
+  index: PropTypes.number.isRequired,
 };

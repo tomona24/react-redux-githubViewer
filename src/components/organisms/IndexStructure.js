@@ -15,23 +15,23 @@ const IndexStructure = (props) => {
     setResearchWord(filterWord);
   };
 
+  const changeDeleteList = (newIssue, isClicked) => {
+    let newDeleteIssues = [...deleteList];
+    if (isClicked) {
+      newDeleteIssues.push(newIssue);
+    } else {
+      newDeleteIssues = newDeleteIssues.filter((issue) => {
+        return !Object.is(newIssue, issue);
+      });
+    }
+    setDeleteList(newDeleteIssues);
+  };
+
   const submitDeleteIssue = () => {
     // eslint-disable-next-line no-plusplus
     for (let i = 0; i < deleteList.length; i++) {
       deleteChosenIssue(deleteList[i]);
     }
-  };
-
-  const changeDeleteList = (newIssue, isClicked) => {
-    let newDeleteIssues = [];
-    if (isClicked) {
-      newDeleteIssues = [...deleteList, newIssue];
-    } else {
-      newDeleteIssues = deleteList.filter((issue) => {
-        return newIssue !== issue;
-      });
-    }
-    setDeleteList(newDeleteIssues);
   };
 
   const submitAddNewIssue = () => {
@@ -44,7 +44,7 @@ const IndexStructure = (props) => {
       <IssueHeader
         setNewResearchWord={setNewResearchWord}
         submitDeleteIssue={submitDeleteIssue}
-        submitAddNewIssue={submitAddNewIssue} // あとで消す
+        submitAddNewIssue={submitAddNewIssue}
       />
       <Table
         issues={issues}
