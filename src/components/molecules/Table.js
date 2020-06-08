@@ -63,7 +63,7 @@ export const IssueList = (props) => {
     );
   });
   if (filteredIssues.length === 0) {
-    const sentence = "データがありません";
+    const sentence = 'データがありません';
     return (
       <Div>
         <TableCell text={sentence} />
@@ -166,7 +166,7 @@ const TableContainer = styled.div`
     left: 0px;
     background: ${Styles.BACKGROUND_COLOR.LIGHT};
     border: 1px solid ${Styles.BORDER_COLOR};
-    content: "";
+    content: '';
     z-index: -5;
   }
 `;

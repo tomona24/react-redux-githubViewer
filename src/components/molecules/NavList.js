@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import Styles from '../Styles';
 import NavItem from '../atoms/NavItem';
 
 const NavItems = () => {

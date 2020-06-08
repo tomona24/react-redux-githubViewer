@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import TabIndices from '../molecules/TabIndices';
 import Table from '../molecules/Table';
 import IssueHeader from '../molecules/IssueHeader';
 

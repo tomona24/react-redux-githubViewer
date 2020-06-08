@@ -21,7 +21,6 @@ const Toppage = () => {
       <Route path="/issue" component={IssueContainer} />
       <Route path="/pullRequest" component={PullRequest} />
       <Route path="/profile" component={Profile} />
-
     </div>
   );
 };

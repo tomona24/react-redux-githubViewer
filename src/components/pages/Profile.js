@@ -10,7 +10,9 @@ const Profile = () => {
       <Table>
         <Div direction="column">
           <Div>プロフィール</Div>
-          <Div><img src="" /></Div>
+          <Div>
+            <img src="" />
+          </Div>
         </Div>
         <Div direction="column">
           <Div>ユーザ名</Div>
@@ -27,7 +29,7 @@ const Div = styled.div`
   display: flex;
   width: 100%;
   padding: 10px;
-  font-size: .95em;
+  font-size: 0.95em;
   color: ${(props) => (props.bold ? '#000' : '#444')};
   flex-direction: ${(props) =>
     props.direction === 'column' ? 'column' : 'row'};
