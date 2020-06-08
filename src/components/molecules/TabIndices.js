@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import TabIndex from '../atoms/TabIndex';
 
 const TabIndices = (props) => {
-  const { isIssue, setIsIssue } = useState(true);
+  const [isIssue, setIsIssue] = useState(true);
   const { changeCurrent } = props;
   const changeSelected = () => {
     // const { id } = event.target;
