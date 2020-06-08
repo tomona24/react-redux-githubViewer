@@ -44,9 +44,10 @@ export const IssueList = (props) => {
           onClick={handleClick}
           index={index}
           wholeChecked={wholeChecked}
+          width="50px"
         />
         <Div key={title} onClick={openModal}>
-          <TableCell text={title} />
+          <TableCell text={title} width="50%" />
           <TableCell text={status} />
           <TableCell text={author} />
           <TableCell text={createdDate} />
@@ -76,18 +77,21 @@ export const IssueList = (props) => {
 const TableHeader = (props) => {
   const { onWholeCheck, wholeChecked } = props;
   return (
-    <Div header>
+    <Tr>
       <TableCheckBoxCell
         index={0}
         onClick={onWholeCheck}
         checked={wholeChecked}
+        width="50px"
       />
-      <TableCell text="" />
-      <TableCell text="ステータス" />
-      <TableCell text="作成者" />
-      <TableCell text="作成日付" />
-      <TableCell text="更新日付" />
-    </Div>
+      <Div header>
+        <TableCell text="" width="50%" />
+        <TableCell text="ステータス" />
+        <TableCell text="作成者" />
+        <TableCell text="作成日付" />
+        <TableCell text="更新日付" />
+      </Div>
+    </Tr>
   );
 };
 
@@ -140,6 +144,7 @@ IssueList.propTypes = {
 
 const Div = styled.div`
   display: flex;
+  justify-content: flex-end;
   width: 100%;
   color: #000;
   font-weight: ${(props) => (props.header ? 800 : 400)};

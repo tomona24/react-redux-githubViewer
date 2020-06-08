@@ -5,11 +5,12 @@ import PropTypes from 'prop-types';
 import Styles from '../Styles';
 
 const TabIndex = (props) => {
-  const { text, selected, to } = props;
+  const { text, selected, to, changeSelected } = props;
+
   return (
-    <Div selected={selected}>
-      <Link to={to}>{text}</Link>
-    </Div>
+    <Link to={to} onClick={changeSelected}>
+      <Div selected={selected}>{text}</Div>
+    </Link>
   );
 };
 
@@ -34,6 +35,7 @@ TabIndex.propTypes = {
   text: PropTypes.string.isRequired,
   selected: PropTypes.bool.isRequired,
   to: PropTypes.string.isRequired,
+  changeSelected: PropTypes.func.isRequired,
 };
 
 export default TabIndex;

@@ -11,7 +11,7 @@ const Profile = () => {
         <Div direction="column">
           <Div>プロフィール</Div>
           <Div>
-            <img src="" />
+            <img src="../img/ui.png" alt="icon" />
           </Div>
         </Div>
         <Div direction="column">

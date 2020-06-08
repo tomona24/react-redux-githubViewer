@@ -4,12 +4,12 @@ import PropTypes from 'prop-types';
 import Styles from '../Styles';
 
 export const TableCell = (props) => {
-  const { text } = props;
-  return <Div>{text}</Div>;
+  const { text, width } = props;
+  return <Div width={width}>{text}</Div>;
 };
 
 export const TableCheckBoxCell = (props) => {
-  const { onClick, index } = props;
+  const { onClick, index, width } = props;
   const [isChecked, setIsChecked] = useState(false);
   // const checked = wholeChecked ? true : isChecked;
   const onChecked = () => {
@@ -19,7 +19,7 @@ export const TableCheckBoxCell = (props) => {
   };
 
   return (
-    <Div onClick={onChecked}>
+    <Div onClick={onChecked} width={width}>
       <input type="checkbox" checked={isChecked} />
     </Div>
   );
@@ -29,6 +29,7 @@ const Div = styled.div`
   display: block;
   margin: 1px;
   padding: 8px 4px;
+  width: ${(props) => (props.width ? props.width : '120px')};
   color: #000;
   font-size: ${Styles.FONT_SIZE.DEFAULT}px;
   font-family: ${Styles.FONT_FAMILY};
@@ -37,9 +38,11 @@ const Div = styled.div`
 
 TableCell.propTypes = {
   text: PropTypes.string.isRequired,
+  width: PropTypes.string.isRequired,
 };
 
 TableCheckBoxCell.propTypes = {
   onClick: PropTypes.func.isRequired,
   index: PropTypes.number.isRequired,
+  width: PropTypes.string.isRequired,
 };
