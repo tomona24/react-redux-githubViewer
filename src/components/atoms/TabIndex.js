@@ -1,13 +1,14 @@
 import styled from 'styled-components';
 import React from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Styles from '../Styles';
 
 const TabIndex = (props) => {
-  const { text, selected } = props;
+  const { text, selected, to } = props;
   return (
-    <Div href="" selected={selected}>
-      {text}
+    <Div selected={selected}>
+      <Link to={to}>{text}</Link>
     </Div>
   );
 };
@@ -32,6 +33,7 @@ const Div = styled.a`
 TabIndex.propTypes = {
   text: PropTypes.string.isRequired,
   selected: PropTypes.bool.isRequired,
+  to: PropTypes.string.isRequired,
 };
 
 export default TabIndex;

@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import React from 'react';
+import PropTypes from 'prop-types';
 import Styles from '../Styles';
 
 const NavItem = (props) => {
@@ -23,5 +24,9 @@ const Item = styled.a`
     color: ${Styles.FONT_COLOR.WHITE};
   }
 `;
+
+NavItem.propTypes = {
+  text: PropTypes.string.isRequired,
+};
 
 export default NavItem;

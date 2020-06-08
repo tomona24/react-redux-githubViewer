@@ -1,20 +1,27 @@
 import styled from 'styled-components';
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Logo, MenuLabel } from '../atoms/Label';
 
-const items = ['Issue', 'Pull Request'];
-
 const MenuItems = () => {
-  const menuItem = items.map((item) => {
-    return <MenuLabel text={item} key={item} />;
-  });
-  return menuItem;
+  return (
+    <div>
+      <Link to="/issue">
+        <MenuLabel text="Issue" />
+      </Link>
+      <Link to="/pullRequest">
+        <MenuLabel text="Pull Request" />
+      </Link>
+    </div>
+  );
 };
 
 const MenuList = () => {
   return (
     <Div>
-      <Logo />
+      <Link to="/">
+        <Logo />
+      </Link>
       <MenuItems />
     </Div>
   );

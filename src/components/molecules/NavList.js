@@ -1,16 +1,27 @@
 import styled from 'styled-components';
 import React from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Styles from '../Styles';
 import NavItem from '../atoms/NavItem';
 
-const items = ['Top', 'Your Profile', 'Issue', 'Pull Request'];
-
 const NavItems = () => {
-  const navItem = items.map((item) => {
-    return <NavItem text={item} key={item} />;
-  });
-  return navItem;
+  return (
+    <div>
+      <Link to="/">
+        <NavItem text="Top" key="Top" />
+      </Link>
+      <Link to="/profile">
+        <NavItem text="Your Profile" key="Your Profile" />
+      </Link>
+      <Link to="/issue">
+        <NavItem text="Issue" key="Issue" />
+      </Link>
+      <Link to="/pullRequest">
+        <NavItem text="Pull Request" key="Pull Request" />
+      </Link>
+    </div>
+  );
 };
 
 const NavList = (props) => {

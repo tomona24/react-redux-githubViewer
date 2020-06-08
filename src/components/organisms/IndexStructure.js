@@ -40,7 +40,6 @@ const IndexStructure = (props) => {
 
   return (
     <Container>
-      <TabIndices />
       <IssueHeader
         setNewResearchWord={setNewResearchWord}
         submitDeleteIssue={submitDeleteIssue}
