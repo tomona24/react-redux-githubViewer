@@ -15,7 +15,7 @@ const IndexStructure = (props) => {
   };
 
   const handleCheckIssue = (newIssue) => {
-    const newCheckedIssue = {...checkedIssue};
+    const newCheckedIssue = { ...checkedIssue };
     // debugger
     if (newCheckedIssue[newIssue.id]) {
       delete newCheckedIssue[newIssue.id];
