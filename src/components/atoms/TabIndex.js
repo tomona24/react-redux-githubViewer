@@ -4,6 +4,11 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Styles from '../Styles';
 
+const style = {
+  textDecoration: 'none',
+  color: '#000',
+};
+
 const TabIndex = (props) => {
   const { text, selected, to, changeSelected } = props;
 
@@ -14,12 +19,6 @@ const TabIndex = (props) => {
       </Link>
     </Div>
   );
-};
-
-
-const style = {
-  textDecoration: 'none',
-  color: '#000',
 };
 
 const Div = styled.a`
