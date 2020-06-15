@@ -10,10 +10,10 @@ const style = {
 const MenuItems = () => {
   return (
     <div>
-      <Link to="react-redux-githubViewer/issue" style={style}>
+      <Link to="/issue" style={style}>
         <MenuLabel text="Issue" />
       </Link>
-      <Link to="react-redux-githubViewer/pullRequest" style={style}>
+      <Link to="/pullRequest" style={style}>
         <MenuLabel text="Pull Request" />
       </Link>
     </div>
@@ -23,7 +23,7 @@ const MenuItems = () => {
 const MenuList = () => {
   return (
     <Div>
-      <Link to="react-redux-githubViewer/" style={style}>
+      <Link to="/" style={style}>
         <Logo />
       </Link>
       <MenuItems />
