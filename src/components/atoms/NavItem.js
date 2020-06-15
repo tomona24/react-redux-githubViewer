@@ -3,7 +3,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Styles from '../Styles';
 
-
 const NavItem = (props) => {
   const { text, onClick } = props;
   return <Item onClick={onClick}>{text}</Item>;

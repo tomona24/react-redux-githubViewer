@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Styles from '../Styles';
 
@@ -35,7 +35,6 @@ TableCell.propTypes = {
 
 TableCheckBoxCell.propTypes = {
   onClick: PropTypes.func.isRequired,
-  index: PropTypes.number.isRequired,
   checked: PropTypes.bool.isRequired,
   width: PropTypes.string.isRequired,
 };

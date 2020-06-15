@@ -26,7 +26,7 @@ export const IssueList = (props) => {
     return issue;
   });
 
-  const issueRows = filteredIssues.map((issue, index) => {
+  const issueRows = filteredIssues.map((issue) => {
     const { title, status, author, createdDate, updatedDate } = issue;
     const handleClick = () => {
       handleCheckIssue(issue);
@@ -70,9 +70,9 @@ const TableHeader = (props) => {
   const { onWholeCheck } = props;
   const [checked, setChecked] = useState(false);
   const onClick = () => {
-    onWholeCheck(!checked)
-    setChecked(!checked)
-  }
+    onWholeCheck(!checked);
+    setChecked(!checked);
+  };
   return (
     <Tr>
       <TableCheckBoxCell onClick={onClick} checked={checked} width="50px" />

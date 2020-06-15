@@ -3,6 +3,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Logo, MenuLabel } from '../atoms/Label';
 
+const style = {
+  textDecoration: 'none',
+};
 
 const MenuItems = () => {
   return (
@@ -26,10 +29,6 @@ const MenuList = () => {
       <MenuItems />
     </Div>
   );
-};
-
-const style = {
-  textDecoration: 'none',
 };
 
 const Div = styled.div`

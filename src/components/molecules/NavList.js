@@ -4,6 +4,10 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import NavItem from '../atoms/NavItem';
 
+const style = {
+  textDecoration: 'none',
+};
+
 const NavItems = (props) => {
   const { onClick } = props;
   return (
@@ -12,7 +16,7 @@ const NavItems = (props) => {
         <NavItem text="Top" key="Top" onClick={onClick} />
       </Link>
       <Link to="/profile" style={style}>
-        <NavItem text="Your Profile" key="Your Profile" onClick={onClick}  />
+        <NavItem text="Your Profile" key="Your Profile" onClick={onClick} />
       </Link>
       <Link to="/issue" style={style}>
         <NavItem text="Issue" key="Issue" onClick={onClick} />
@@ -38,10 +42,6 @@ const NavList = (props) => {
       <NavItems />
     </Div>
   );
-};
-
-const style = {
-  textDecoration: 'none',
 };
 
 const Div = styled.div`
