@@ -7,30 +7,30 @@ import IssueHeader from '../molecules/IssueHeader';
 const IndexStructure = (props) => {
   const { issues, addNewIssue, deleteChosenIssue, uploadEditIssue } = props;
   const [researchWord, setResearchWord] = useState('');
-  const [deleteList, setDeleteList] = useState([]);
+  const [checkedIssue, setCheckedIssue] = useState({});
 
   const setNewResearchWord = (word) => {
     const filterWord = word.toLowerCase();
     setResearchWord(filterWord);
   };
 
-  const changeDeleteList = (newIssue, isClicked) => {
-    let newDeleteIssues = [...deleteList];
-    if (isClicked) {
-      newDeleteIssues.push(newIssue);
+  const handleCheckIssue = (newIssue) => {
+    const newCheckedIssue = {...checkedIssue};
+    debugger
+    if (newCheckedIssue[newIssue.id]) {
+      delete newCheckedIssue[newIssue.id];
     } else {
-      newDeleteIssues = newDeleteIssues.filter((issue) => {
-        return !Object.is(newIssue, issue);
-      });
+      newCheckedIssue[newIssue.id] = newIssue;
     }
-    setDeleteList(newDeleteIssues);
+    setCheckedIssue(newCheckedIssue);
   };
 
   const submitDeleteIssue = () => {
     // eslint-disable-next-line no-plusplus
-    for (let i = 0; i < deleteList.length; i++) {
-      deleteChosenIssue(deleteList[i]);
-    }
+    // for (let i = 0; i < deleteList.length; i++) {
+    //   deleteChosenIssue(deleteList[i]);
+    // }
+    Object.keys(checkedIssue).map((id) => deleteChosenIssue(id))
   };
 
   const submitAddNewIssue = (newIssue) => {
@@ -46,8 +46,10 @@ const IndexStructure = (props) => {
       />
       <Table
         issues={issues}
+        checkedIssue={checkedIssue}
         researchWord={researchWord}
-        changeDeleteList={changeDeleteList}
+        handleCheckAll={setCheckedIssue}
+        handleCheckIssue={handleCheckIssue}
         uploadEditIssue={uploadEditIssue}
       />
     </Container>

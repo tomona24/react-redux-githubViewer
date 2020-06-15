@@ -8,9 +8,9 @@ import ModalDiv from './ModalDiv';
 export const IssueList = (props) => {
   const {
     issues,
+    checkedIssue,
     researchWord,
-    changeDeleteList,
-    wholeChecked,
+    handleCheckIssue,
     uploadEditIssue,
   } = props;
 
@@ -26,10 +26,6 @@ export const IssueList = (props) => {
     return issue;
   });
 
-  const handleClick = (index, isChecked) => {
-    changeDeleteList(issues[index], isChecked);
-  };
-
   // const checkAll = () => {
   //   for (let i = 0; i < issues.length; i++) {
   //     changeDeleteList(issues[i], wholeChecked);
@@ -38,12 +34,14 @@ export const IssueList = (props) => {
 
   const issueRows = filteredIssues.map((issue, index) => {
     const { title, status, author, createdDate, updatedDate } = issue;
+    const handleClick = () => {
+      handleCheckIssue(issue);
+    };
     return (
       <Tr>
         <TableCheckBoxCell
           onClick={handleClick}
-          index={index}
-          wholeChecked={wholeChecked}
+          checked={checkedIssue[issue.id]}
           width="50px"
         />
         <Div key={title} onClick={openModal}>
@@ -75,13 +73,17 @@ export const IssueList = (props) => {
 };
 
 const TableHeader = (props) => {
-  const { onWholeCheck, wholeChecked } = props;
+  const { onWholeCheck } = props;
+  const [checked, setChecked] = useState(false);
+  const onClick = () => {
+    onWholeCheck(!checked)
+    setChecked(!checked)
+  }
   return (
     <Tr>
       <TableCheckBoxCell
-        index={0}
-        onClick={onWholeCheck}
-        checked={wholeChecked}
+        onClick={onClick}
+        checked={checked}
         width="50px"
       />
       <Div header>
@@ -96,19 +98,24 @@ const TableHeader = (props) => {
 };
 
 const Table = (props) => {
-  const { issues, researchWord, changeDeleteList, uploadEditIssue } = props;
-  const [wholeChecked, setWholeChecked] = useState(false);
-  const onWholeCheck = (index, isChecked) => {
-    setWholeChecked(isChecked);
+  const { issues, checkedIssue, researchWord, handleCheckAll, handleCheckIssue, uploadEditIssue } = props;
+  const onCheckAll = (isChecked) => {
+    let newCheckedIssue = {...checkedIssue};
+    if (isChecked) {
+      issues.forEach(issue => newCheckedIssue[issue.id] = issue)
+    } else {
+      newCheckedIssue = {}
+    }
+    handleCheckAll(newCheckedIssue)
   };
   return (
     <TableContainer>
-      <TableHeader onWholeCheck={onWholeCheck} wholeChecked={wholeChecked} />
+      <TableHeader onWholeCheck={onCheckAll} />
       <IssueList
         issues={issues}
+        checkedIssue={checkedIssue}
         researchWord={researchWord}
-        changeDeleteList={changeDeleteList}
-        wholeChecked={wholeChecked}
+        handleCheckIssue={handleCheckIssue}
         uploadEditIssue={uploadEditIssue}
       />
     </TableContainer>
@@ -126,7 +133,7 @@ Table.propTypes = {
     }).isRequired
   ).isRequired,
   researchWord: PropTypes.string.isRequired,
-  changeDeleteList: PropTypes.func.isRequired,
+  setCheckedIssue: PropTypes.func.isRequired,
   uploadEditIssue: PropTypes.func.isRequired,
 };
 
@@ -137,6 +144,7 @@ TableHeader.propTypes = {
 
 IssueList.propTypes = {
   issues: PropTypes.arrayOf().isRequired,
+  checkedIssue: PropTypes.obj,
   researchWord: PropTypes.string.isRequired,
   changeDeleteList: PropTypes.func.isRequired,
   uploadEditIssue: PropTypes.func.isRequired,
