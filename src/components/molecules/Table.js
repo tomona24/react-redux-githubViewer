@@ -26,12 +26,6 @@ export const IssueList = (props) => {
     return issue;
   });
 
-  // const checkAll = () => {
-  //   for (let i = 0; i < issues.length; i++) {
-  //     changeDeleteList(issues[i], wholeChecked);
-  //   }
-  // };
-
   const issueRows = filteredIssues.map((issue, index) => {
     const { title, status, author, createdDate, updatedDate } = issue;
     const handleClick = () => {
@@ -65,7 +59,7 @@ export const IssueList = (props) => {
     const sentence = 'データがありません';
     return (
       <Div>
-        <TableCell text={sentence} />
+        <TableCell text={sentence} width="100%" />
       </Div>
     );
   }
@@ -81,11 +75,7 @@ const TableHeader = (props) => {
   }
   return (
     <Tr>
-      <TableCheckBoxCell
-        onClick={onClick}
-        checked={checked}
-        width="50px"
-      />
+      <TableCheckBoxCell onClick={onClick} checked={checked} width="50px" />
       <Div header>
         <TableCell text="" width="50%" />
         <TableCell text="ステータス" />
@@ -98,15 +88,22 @@ const TableHeader = (props) => {
 };
 
 const Table = (props) => {
-  const { issues, checkedIssue, researchWord, handleCheckAll, handleCheckIssue, uploadEditIssue } = props;
+  const {
+    issues,
+    researchWord,
+    checkedIssue,
+    handleCheckAll,
+    handleCheckIssue,
+    uploadEditIssue,
+  } = props;
   const onCheckAll = (isChecked) => {
-    let newCheckedIssue = {...checkedIssue};
+    let newCheckedIssue = { ...checkedIssue };
     if (isChecked) {
-      issues.forEach(issue => newCheckedIssue[issue.id] = issue)
+      issues.forEach((issue) => (newCheckedIssue[issue.id] = issue));
     } else {
-      newCheckedIssue = {}
+      newCheckedIssue = {};
     }
-    handleCheckAll(newCheckedIssue)
+    handleCheckAll(newCheckedIssue);
   };
   return (
     <TableContainer>
@@ -133,13 +130,14 @@ Table.propTypes = {
     }).isRequired
   ).isRequired,
   researchWord: PropTypes.string.isRequired,
-  setCheckedIssue: PropTypes.func.isRequired,
   uploadEditIssue: PropTypes.func.isRequired,
+  checkedIssue: PropTypes.func.isRequired,
+  handleCheckAll: PropTypes.func.isRequired,
+  handleCheckIssue: PropTypes.func.isRequired,
 };
 
 TableHeader.propTypes = {
   onWholeCheck: PropTypes.func.isRequired,
-  wholeChecked: PropTypes.bool.isRequired,
 };
 
 IssueList.propTypes = {

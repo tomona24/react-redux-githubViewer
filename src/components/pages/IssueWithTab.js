@@ -5,15 +5,19 @@ import TabIndices from '../molecules/TabIndices';
 import PullRequest from './PullRequest';
 
 const IssueWithTab = () => {
-  const [currentActive, setCurrentActive] = useState(IssueContainer);
-  const changeCurrent = (event) => {
-    const { id } = event.target;
-    setCurrentActive(id);
-  };
+  const [currentActive, setCurrentActive] = useState('IssueContainer');
+  // const changeCurrent = (event) => {
+  //   const { id } = event.target;
+  //   setCurrentActive(id);
+  // };
   return (
     <div>
-      <TabIndices changeCurrent={changeCurrent} />
-      {currentActive === IssueContainer ? <IssueContainer /> : <PullRequest />}
+      <TabIndices changeCurrent={setCurrentActive} />
+      {currentActive === 'IssueContainer' ? (
+        <IssueContainer />
+      ) : (
+        <PullRequest />
+      )}
     </div>
   );
 };

@@ -3,15 +3,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Styles from '../Styles';
 
+
 const NavItem = (props) => {
-  const { text } = props;
-  return <Item>{text}</Item>;
+  const { text, onClick } = props;
+  return <Item onClick={onClick}>{text}</Item>;
 };
 
-const Item = styled.a`
+const Item = styled.div`
   display: block;
   cursor: pointer;
   padding: 10px 8px;
+  text-decolation: none;
   margin: 0px;
   text-align: left;
   font-family: ${Styles.FONT_FAMILY};
@@ -27,6 +29,7 @@ const Item = styled.a`
 
 NavItem.propTypes = {
   text: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
 };
 
 export default NavItem;

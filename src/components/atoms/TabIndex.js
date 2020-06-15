@@ -8,10 +8,18 @@ const TabIndex = (props) => {
   const { text, selected, to, changeSelected } = props;
 
   return (
-    <Link to={to} onClick={changeSelected}>
-      <Div selected={selected}>{text}</Div>
-    </Link>
+    <Div selected={selected}>
+      <Link to={to} onClick={changeSelected} style={style}>
+        {text}
+      </Link>
+    </Div>
   );
+};
+
+
+const style = {
+  textDecoration: 'none',
+  color: '#000',
 };
 
 const Div = styled.a`

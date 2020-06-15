@@ -45,7 +45,7 @@ const issueReducer = (state = initialIssues, action) => {
     case ADD_ISSUE:
       return [...state, action.issue];
     case DELETE_ISSUE:
-      return state.filter((issue) => !Object.is(issue, action.issue));
+      return state.filter((issue) => issue.id !== action.id);
     case EDIT_ISSUE:
       return state.map((issue) =>
         issue.id === action.issue.id ? action.issue : issue

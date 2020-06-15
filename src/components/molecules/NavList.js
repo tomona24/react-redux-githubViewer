@@ -4,31 +4,32 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import NavItem from '../atoms/NavItem';
 
-const NavItems = () => {
+const NavItems = (props) => {
+  const { onClick } = props;
   return (
     <div>
-      <Link to="/">
-        <NavItem text="Top" key="Top" />
+      <Link to="/" style={style}>
+        <NavItem text="Top" key="Top" onClick={onClick} />
       </Link>
-      <Link to="/profile">
-        <NavItem text="Your Profile" key="Your Profile" />
+      <Link to="/profile" style={style}>
+        <NavItem text="Your Profile" key="Your Profile" onClick={onClick}  />
       </Link>
-      <Link to="/issue">
-        <NavItem text="Issue" key="Issue" />
+      <Link to="/issue" style={style}>
+        <NavItem text="Issue" key="Issue" onClick={onClick} />
       </Link>
-      <Link to="/pullRequest">
-        <NavItem text="Pull Request" key="Pull Request" />
+      <Link to="/pullRequest" style={style}>
+        <NavItem text="Pull Request" key="Pull Request" onClick={onClick} />
       </Link>
     </div>
   );
 };
 
 const NavList = (props) => {
-  const { toggle } = props;
+  const { toggle, onClick } = props;
   if (toggle) {
     return (
       <Div>
-        <NavItems />
+        <NavItems onClick={onClick} />
       </Div>
     );
   }
@@ -37,6 +38,10 @@ const NavList = (props) => {
       <NavItems />
     </Div>
   );
+};
+
+const style = {
+  textDecoration: 'none',
 };
 
 const Div = styled.div`
@@ -48,10 +53,16 @@ const Div = styled.div`
   background: #fff;
   box-shadow: 3px 3px 3px #eee;
   display: ${(props) => (props.hidden ? 'none' : 'block')};
+  z-index: 500;
 `;
 
 NavList.propTypes = {
   toggle: PropTypes.bool.isRequired,
+  onClick: PropTypes.func.isRequired,
+};
+
+NavItems.propTypes = {
+  onClick: PropTypes.func.isRequired,
 };
 
 export default NavList;

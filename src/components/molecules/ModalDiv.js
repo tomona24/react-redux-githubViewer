@@ -12,11 +12,10 @@ const DETAIL = 'detail';
 const customStyles = {
   content: {
     display: 'block',
-    top: '20vh',
     width: '600px',
     height: '60vh',
     padding: '50px',
-    margin: '20vh auto',
+    margin: '40vh auto',
     transform: 'translate(-50%, -50%)',
   },
 };

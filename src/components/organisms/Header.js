@@ -11,13 +11,17 @@ const Header = () => {
     setToggle(!toggle);
   };
 
+  const closeMenu = () => {
+    setToggle(false);
+  };
+
   return (
     <Container>
       <MenuList />
       <Awesome onClick={changeToggle}>
         <i className="fas fa-bars" />
       </Awesome>
-      <NavList toggle={toggle} />
+      <NavList toggle={toggle} onClick={closeMenu} />
     </Container>
   );
 };

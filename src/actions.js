@@ -11,10 +11,10 @@ export const addIssue = (issue) => {
   };
 };
 
-export const deleteIssue = (issue) => {
+export const deleteIssue = (id) => {
   return {
     type: DELETE_ISSUE,
-    issue,
+    id,
   };
 };
 

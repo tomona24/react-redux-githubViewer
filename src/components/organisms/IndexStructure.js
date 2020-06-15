@@ -16,7 +16,7 @@ const IndexStructure = (props) => {
 
   const handleCheckIssue = (newIssue) => {
     const newCheckedIssue = {...checkedIssue};
-    debugger
+    // debugger
     if (newCheckedIssue[newIssue.id]) {
       delete newCheckedIssue[newIssue.id];
     } else {
@@ -30,7 +30,7 @@ const IndexStructure = (props) => {
     // for (let i = 0; i < deleteList.length; i++) {
     //   deleteChosenIssue(deleteList[i]);
     // }
-    Object.keys(checkedIssue).map((id) => deleteChosenIssue(id))
+    Object.keys(checkedIssue).map((id) => deleteChosenIssue(id));
   };
 
   const submitAddNewIssue = (newIssue) => {

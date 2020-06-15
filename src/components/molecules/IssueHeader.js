@@ -23,7 +23,7 @@ const IssueHeader = (props) => {
       <TextBar getTheValue={setNewResearchWord} placeholder="issue名で検索" />
       <Button onClick={openModal} text="Open" type="primary" />
       <ModalDiv
-        submitAddNewIssue={submitAddNewIssue}
+        handleSubmit={submitAddNewIssue}
         isModalOpen={isModalOpen}
         setIsModalOpen={setIsModalOpen}
         type="new"

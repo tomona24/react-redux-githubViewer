@@ -3,13 +3,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Logo, MenuLabel } from '../atoms/Label';
 
+
 const MenuItems = () => {
   return (
     <div>
-      <Link to="/issue">
+      <Link to="/issue" style={style}>
         <MenuLabel text="Issue" />
       </Link>
-      <Link to="/pullRequest">
+      <Link to="/pullRequest" style={style}>
         <MenuLabel text="Pull Request" />
       </Link>
     </div>
@@ -19,7 +20,7 @@ const MenuItems = () => {
 const MenuList = () => {
   return (
     <Div>
-      <Link to="/">
+      <Link to="/" style={style}>
         <Logo />
       </Link>
       <MenuItems />
@@ -27,9 +28,14 @@ const MenuList = () => {
   );
 };
 
+const style = {
+  textDecoration: 'none',
+};
+
 const Div = styled.div`
   display: flex;
   align-items: center;
+  text-decoration: none;
   padding: 8px 16px;
 `;
 

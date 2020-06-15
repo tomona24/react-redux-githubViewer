@@ -7,16 +7,12 @@ const TabIndices = (props) => {
   const [isIssue, setIsIssue] = useState(true);
   const { changeCurrent } = props;
   const changeSelected = () => {
-    // const { id } = event.target;
     setIsIssue(!isIssue);
-    // switch (id) {
-    //   case 'IssueContainer':
-    //     changeCurrent(id);
-    //     break;
-    //   case 'PullRequest':
-    //     changeCurrent(id);
-    //     break;
-    // }
+    if (!isIssue) {
+      changeCurrent('IssueContainer');
+    } else {
+      changeCurrent('PullRequest');
+    }
   };
   return (
     <Div>
