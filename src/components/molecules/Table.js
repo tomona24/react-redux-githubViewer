@@ -14,11 +14,8 @@ export const IssueList = (props) => {
     uploadEditIssue,
   } = props;
 
+  const [editIssue, setEditIssue] = useState();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
-
   const filteredIssues = issues.filter((issue) => {
     if (issue.title.toLowerCase().indexOf(researchWord) === -1) {
       return false;
@@ -31,6 +28,11 @@ export const IssueList = (props) => {
     const handleClick = () => {
       handleCheckIssue(issue);
     };
+    const openModal = () => {
+      console.log(issue);
+      setIsModalOpen(true);
+    };
+
     return (
       <Tr>
         <TableCheckBoxCell
@@ -151,12 +153,15 @@ IssueList.propTypes = {
 const Div = styled.div`
   display: flex;
   justify-content: flex-end;
-  width: 100%;
+  width: 98%;
   color: #000;
   font-weight: ${(props) => (props.header ? 800 : 400)};
   margin: 1px 0px;
 `;
 const Tr = styled(Div)`
+  margin: 0;
+  padding: 3px;
+  min-width: 700px;
   :hover {
     background: ${Styles.BACKGROUND_COLOR.LIGHTBLUE};
   }
@@ -164,15 +169,17 @@ const Tr = styled(Div)`
 
 const TableContainer = styled.div`
   position: relative;
-  padding: 0px;
+  padding: 0 16px;
   margin: 16px;
+  overflow: scroll;
+  white-space: nowrap;
   border: 1px solid ${Styles.BORDER_COLOR};
   border-radius: ${Styles.BORDER_RADIUS};
   background: #fff;
   ::after {
     position: absolute;
-    height: calc(100% + 12px);
-    width: calc(100% + 12px);
+    height: calc(90% + 12px);
+    width: calc(80%);
     top: 0px;
     left: 0px;
     background: ${Styles.BACKGROUND_COLOR.LIGHT};

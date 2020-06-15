@@ -13,8 +13,8 @@ const TabIndex = (props) => {
   const { text, selected, to, changeSelected } = props;
 
   return (
-    <Div selected={selected}>
-      <Link to={to} onClick={changeSelected} style={style}>
+    <Div selected={selected} onClick={changeSelected}>
+      <Link to={to} style={style}>
         {text}
       </Link>
     </Div>
@@ -25,6 +25,7 @@ const Div = styled.a`
   padding: 16px;
   margin: 20px 0px;
   width: 100%;
+  min-width: 100px;
   text-decoration: none;
   color: ${Styles.FONT_COLOR.DARK};
   text-align: center;

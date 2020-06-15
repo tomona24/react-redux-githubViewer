@@ -35,7 +35,8 @@ const TabIndices = (props) => {
 const Div = styled.div`
   display: flex;
   justify-content: center;
-  width: 1000px;
+  max-width: 1000px;
+  padding: 0px 16px;
   margin: 16px auto;
 `;
 

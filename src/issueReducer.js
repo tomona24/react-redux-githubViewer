@@ -1,13 +1,5 @@
 import { ADD_ISSUE, DELETE_ISSUE, EDIT_ISSUE } from './actions';
 
-// id: PropTypes.number.isRequired,
-// completed: PropTypes.bool.isRequired,
-// title: PropTypes.string.isRequired,
-// status: PropTypes.string.isRequired,
-// author: PropTypes.string.isRequired,
-// createdDate: PropTypes.string.isRequired,
-// updatedDate: PropTypes.string.isRequired,
-
 const kariData = {
   id: 'ore-gorira',
   title: 'ore',

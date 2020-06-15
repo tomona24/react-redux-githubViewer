@@ -26,10 +26,6 @@ const IndexStructure = (props) => {
   };
 
   const submitDeleteIssue = () => {
-    // eslint-disable-next-line no-plusplus
-    // for (let i = 0; i < deleteList.length; i++) {
-    //   deleteChosenIssue(deleteList[i]);
-    // }
     Object.keys(checkedIssue).map((id) => deleteChosenIssue(id));
   };
 
