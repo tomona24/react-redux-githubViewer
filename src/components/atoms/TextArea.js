@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Styles from '../Styles';
 
-const TextBar = (props) => {
+const TextArea = (props) => {
   const { getTheValue, placeholder, text } = props;
   const [userInput, setUserInput] = useState(text);
 
@@ -16,7 +16,7 @@ const TextBar = (props) => {
   return (
     <Input
       placeholder={placeholder}
-      type="text"
+      id="userInput"
       name="userInput"
       value={userInput}
       onChange={handleChange}
@@ -24,7 +24,7 @@ const TextBar = (props) => {
   );
 };
 
-const Input = styled.input`
+const Input = styled.textarea`
   margin: 4px 16px;
   padding: 8px;
   color: #000;
@@ -35,10 +35,10 @@ const Input = styled.input`
   border: 1px solid ${Styles.BORDER_COLOR};
 `;
 
-TextBar.propTypes = {
+TextArea.propTypes = {
   text: PropTypes.string.isRequired,
-  getTheValue: PropTypes.func.isRequired,
   placeholder: PropTypes.string.isRequired,
+  getTheValue: PropTypes.func.isRequired,
 };
 
-export default TextBar;
+export default TextArea;
