@@ -8,10 +8,13 @@ import IssueWithTab from './IssueWithTab';
 const Toppage = () => {
   return (
     <div>
-      <Route exact path="/" component={IssueWithTab} />
-      <Route path="/issue" component={IssueContainer} />
-      <Route path="/pullRequest" component={PullRequest} />
-      <Route path="/profile" component={Profile} />
+      <Route exact path="react-redux-githubViewer/" component={IssueWithTab} />
+      <Route path="react-redux-githubViewer/issue" component={IssueContainer} />
+      <Route
+        path="react-redux-githubViewer/pullRequest"
+        component={PullRequest}
+      />
+      <Route path="react-redux-githubViewer/profile" component={Profile} />
     </div>
   );
 };
