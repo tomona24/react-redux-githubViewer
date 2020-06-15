@@ -12,16 +12,16 @@ const NavItems = (props) => {
   const { onClick } = props;
   return (
     <div>
-      <Link to="/" style={style}>
+      <Link to="react-redux-githubViewer/" style={style}>
         <NavItem text="Top" key="Top" onClick={onClick} />
       </Link>
-      <Link to="/profile" style={style}>
+      <Link to="react-redux-githubViewer/profile" style={style}>
         <NavItem text="Your Profile" key="Your Profile" onClick={onClick} />
       </Link>
-      <Link to="/issue" style={style}>
+      <Link to="react-redux-githubViewer/issue" style={style}>
         <NavItem text="Issue" key="Issue" onClick={onClick} />
       </Link>
-      <Link to="/pullRequest" style={style}>
+      <Link to="react-redux-githubViewer/pullRequest" style={style}>
         <NavItem text="Pull Request" key="Pull Request" onClick={onClick} />
       </Link>
     </div>
